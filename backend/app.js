@@ -1,7 +1,8 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const path = require('path'); // add this
+const path = require('path');
 const connectDB = require('./config/db');
 
 dotenv.config();
@@ -14,20 +15,20 @@ app.use(cors());
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Routes
+// API routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/comments', require('./routes/comments'));
 
-// Send frontend for root
+// Frontend routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
 });
 
-// Optional: handle all other frontend routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Export app for Vercel
+module.exports = app;
+module.exports.handler = serverless(app);
