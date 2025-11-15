@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Blog App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="nav">
+        <h2>Blog Dashboard</h2>
+        <div>
+            <button onclick="toggleDarkMode()" class="toggle-dark">Dark Mode</button>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Create New Post</h3>
+        <input id="post-title" type="text" placeholder="Post Title">
+        <textarea id="post-content" placeholder="Post Content"></textarea>
+        <button onclick="createPost()">Create Post</button>
+    </div>
+
+    <div class="card">
+        <h3>All Posts</h3>
+        <div id="posts-list"></div>
+    </div>
+
+    <div id="single-post-section" class="card hidden">
+        <h3 id="single-post-title"></h3>
+        <p id="single-post-content"></p>
+
+        <button onclick="deletePost()" class="delete-btn">Delete Post</button>
+
+        <h4>Comments</h4>
+        <div id="comment-list"></div>
+
+        <textarea id="comment-input" placeholder="Write a comment..."></textarea>
+        <button onclick="addComment()">Add Comment</button>
+
+        <button onclick="closePost()" class="back-btn">Back</button>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
