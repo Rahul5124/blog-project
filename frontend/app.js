@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://blog-project-jlas.vercel.app/";
 let token = localStorage.getItem("token");
 let selectedPostId = null;
 
